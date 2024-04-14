@@ -27,9 +27,9 @@ export default async function Index() {
       </nav>
 
       <div className="animate-in flex-1 flex flex-col gap-20 max-w-4xl px-3">
-        <Header />
+        <WelcomeMessage />
         <main className="flex-1 flex flex-col gap-6 text-center">
-          <WelcomeMessage />
+          <Header />
         </main>
       </div>
     </div>
