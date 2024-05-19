@@ -1,27 +1,23 @@
-import { createClient } from "@/utils/supabase/server";
+"use client";
 import { columns, tableType } from "../DataTable/columns";
 import { DataTable } from "../DataTable/DataTable";
+import { useEffect, useState } from "react";
 
-async function GetData() {
-  const supabase = createClient();
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-  const { data: todos } = await supabase
-    .from("todos")
-    .select("*")
-    .eq("userid", user?.id);
-  const formattedTodos: tableType[] = todos!.map((todo: any) => ({
-    todoid: todo.todoid,
-    status: todo.status,
-    body: todo.body,
-    header: todo.header,
-  }));
-  return formattedTodos;
-}
+export default function TodoListPage() {
+  const [todos, setTodos] = useState<tableType[]>([]);
 
-export default async function TodoListPage() {
-  const todos = await GetData();
+  useEffect(() => {
+    async function getTodos() {
+      const todoGet = await fetch("/protected/api", {
+        method: "GET",
+      });
+      const x = await todoGet.json();
+      console.log(x);
+      const formattedTodos: tableType[] = x;
+      setTodos(formattedTodos);
+    }
+    getTodos();
+  }, []);
   return (
     <>
       <DataTable columns={columns} data={todos} />
