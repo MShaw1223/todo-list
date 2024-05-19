@@ -12,7 +12,7 @@ export async function POST(req: Request) {
     console.log("head", header);
     console.log("bod", body);
     console.log("uid ", user_id);
-    const { data, error } = await supabase
+    const { error } = await supabase
       .from("todos")
       .insert({
         header: header,
