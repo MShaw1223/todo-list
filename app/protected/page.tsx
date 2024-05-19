@@ -1,8 +1,6 @@
-import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import TodoListPage from "@/components/todos/TodoListPage";
-import { ModeToggle } from "@/components/ui/toggle";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
