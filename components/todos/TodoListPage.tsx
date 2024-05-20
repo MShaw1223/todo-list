@@ -20,6 +20,7 @@ export default function TodoListPage() {
   }, []);
   return (
     <>
+      <h1 className="mb-2">Todos</h1>
       <DataTable columns={columns} data={todos} />
     </>
   );

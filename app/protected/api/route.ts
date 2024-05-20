@@ -12,14 +12,11 @@ export async function POST(req: Request) {
     console.log("head", header);
     console.log("bod", body);
     console.log("uid ", user_id);
-    const { error } = await supabase
-      .from("todos")
-      .insert({
-        header: header,
-        body: body,
-        user_id: user_id,
-      })
-      .select();
+    const { error } = await supabase.from("todos").insert({
+      header: header,
+      body: body,
+      user_id: user_id,
+    });
     if (error) {
       throw error;
     }

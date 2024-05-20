@@ -14,10 +14,14 @@ export default async function ProtectedPage() {
     return redirect("/login");
   }
   return (
-    <div className="animate-in flex-1 flex flex-col gap-20 min-w-xl px-3">
-      <main className="flex-1 flex flex-col gap-6">
-        <TodoListPage />
-        <AddTodo user={user} />
+    <div className="animate-in mt-20 flex">
+      <main className="flex-1 flex flex-wrap gap-6">
+        <div className="flex-grow border rounded-md p-3">
+          <TodoListPage />
+        </div>
+        <div className="flex-grow border rounded-md p-3">
+          <AddTodo user={user} />
+        </div>
       </main>
     </div>
   );

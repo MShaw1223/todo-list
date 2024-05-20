@@ -42,10 +42,10 @@ export const AddTodo = ({ user }: props) => {
   };
   return (
     <>
-      <h1>Add a todo</h1>
-      <div className="text-center flex-wrap">
+      <h1 className="mb-2">Add a todo</h1>
+      <div className="text-center flex flex-wrap">
         <form
-          className="flex flex-grow space-x-2"
+          className="flex-grow space-y-2"
           onSubmit={(e) => {
             e.preventDefault();
             addTodo({ data: { head: taskHeader, body: taskBody } });
