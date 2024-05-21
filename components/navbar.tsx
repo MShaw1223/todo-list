@@ -1,3 +1,4 @@
+"use server";
 import AuthButton from "./AuthButton";
 import { ModeToggle } from "./ui/toggle";
 

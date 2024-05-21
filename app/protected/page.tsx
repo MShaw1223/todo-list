@@ -1,7 +1,9 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import TodoListPage from "@/components/todos/TodoListPage";
+import TodoList from "@/components/todos/TodoList";
 import { AddTodo } from "@/components/todos/addTodos";
+import { NavBar } from "@/components/navbar";
+import { tableType } from "@/components/DataTable/columns";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -13,16 +15,25 @@ export default async function ProtectedPage() {
   if (!user) {
     return redirect("/login");
   }
+  const { data: todos } = await supabase
+    .from("todos")
+    .select()
+    .eq("userid", user.id)
+    .returns<tableType[]>();
   return (
-    <div className="animate-in mt-20 flex">
-      <main className="flex-1 flex flex-wrap gap-6">
-        <div className="flex-grow border rounded-md p-3">
-          <TodoListPage />
+    <>
+      <NavBar />
+      <h1 className="text-3xl text-center my-4">Todo's</h1>
+      <div className="animate-in flex mx-auto">
+        <div className="flex-1 flex flex-wrap gap-2">
+          <div className="flex-grow border rounded-md p-3 m-2">
+            <TodoList todo={todos!} />
+          </div>
+          <div className="flex-grow border rounded-md p-3 m-2">
+            <AddTodo />
+          </div>
         </div>
-        <div className="flex-grow border rounded-md p-3">
-          <AddTodo user={user} />
-        </div>
-      </main>
-    </div>
+      </div>
+    </>
   );
 }

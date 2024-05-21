@@ -1,7 +1,10 @@
+import { User } from "@supabase/supabase-js";
 import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
 
-export async function extractBody(req: NextRequest | NextApiRequest | Request) {
+export async function extractBody(
+  req: NextRequest | NextApiRequest | Request | Response
+) {
   try {
     if (!req.body) {
       return null;
@@ -29,3 +32,8 @@ export async function extractBody(req: NextRequest | NextApiRequest | Request) {
     console.error("Error extracting body:", error);
   }
 }
+
+export type payload = {
+  header: string;
+  body: string;
+};

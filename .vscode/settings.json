@@ -9,5 +9,6 @@
     "**/node_modules": true,
     ".next": true
   },
-  "explorerExclude.backup": {}
+  "explorerExclude.backup": {},
+  "cSpell.words": ["todos"]
 }
