@@ -1,17 +1,7 @@
-import ProtectedPage from "@/app/protected/page";
-import { createClient } from "@/utils/supabase/server";
 import Header from "./Header";
 
 export default async function WelcomeMessage() {
-  const supabase = createClient();
-
-  const {
-    data: { user },
-  } = await supabase.auth.getUser();
-
-  return user ? (
-    <ProtectedPage />
-  ) : (
+  return (
     <>
       <Header />
       <div className="flex flex-col gap-6 text-center">
