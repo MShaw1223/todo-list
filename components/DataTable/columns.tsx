@@ -48,6 +48,7 @@ export const columns: ColumnDef<tableType>[] = [
             <DropdownMenuItem
               onClick={() => {
                 SetNewCompleteState(!r.complete, r);
+                window.location.reload();
               }}
             >
               Mark as

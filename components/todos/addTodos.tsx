@@ -25,6 +25,7 @@ export const AddTodo = () => {
             variant="outline"
             className="text-accent-foreground"
             formAction={PostTodo}
+            onClick={() => window.location.reload()}
           >
             Add
           </Button>
