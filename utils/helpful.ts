@@ -2,7 +2,7 @@ import { User } from "@supabase/supabase-js";
 import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
 
-export async function extractBody(
+async function extractBody(
   req: NextRequest | NextApiRequest | Request | Response
 ) {
   try {
@@ -33,7 +33,11 @@ export async function extractBody(
   }
 }
 
-export type payload = {
+type payload = {
   header: string;
   body: string;
 };
+
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+
+export { extractBody, type payload, sleep };

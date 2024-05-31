@@ -2,6 +2,7 @@
 import { PostTodo } from "@/app/protected/actions";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
+import { sleep } from "@/utils/helpful";
 
 export const AddTodo = () => {
   return (
@@ -25,7 +26,10 @@ export const AddTodo = () => {
             variant="outline"
             className="text-accent-foreground"
             formAction={PostTodo}
-            onClick={() => window.location.reload()}
+            onClick={async () => {
+              await sleep(1500);
+              window.location.reload();
+            }}
           >
             Add
           </Button>
