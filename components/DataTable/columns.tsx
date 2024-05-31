@@ -8,8 +8,9 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
-import { SetNewCompleteState } from "@/app/protected/actions";
+import { DeleteTodo, SetNewCompleteState } from "@/app/protected/actions";
 
 export type tableType = {
   id: number;
@@ -53,6 +54,15 @@ export const columns: ColumnDef<tableType>[] = [
             >
               Mark as
               {row.original.complete === true ? " not Complete" : " Complete"}
+            </DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem
+              onClick={() => {
+                DeleteTodo(r.id);
+                window.location.reload();
+              }}
+            >
+              Delete Todo
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>

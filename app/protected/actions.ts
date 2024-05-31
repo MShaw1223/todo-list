@@ -32,3 +32,11 @@ export const SetNewCompleteState = async (
     console.error("error", error);
   }
 };
+
+export const DeleteTodo = async (id: number) => {
+  const supabase = createClient();
+  const { error } = await supabase.from("todos").delete().eq("id", id);
+  if (error) {
+    console.error("error", error);
+  }
+};
