@@ -1,9 +1,10 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import TodoList from "@/components/todos/TodoList";
 import { AddTodo } from "@/components/todos/addTodos";
 import { NavBar } from "@/components/navbar";
 import { tableType } from "@/components/DataTable/columns";
+import CompletedList from "@/components/DataTable/CompletedTodos";
+import TodoList from "@/components/DataTable/TodoList";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -19,6 +20,7 @@ export default async function ProtectedPage() {
     .from("todos")
     .select()
     .eq("userid", user.id)
+    .order("id", { ascending: true })
     .returns<tableType[]>();
   return (
     <>
@@ -27,10 +29,13 @@ export default async function ProtectedPage() {
       <div className="animate-in flex mx-auto">
         <div className="flex-1 flex flex-wrap gap-2">
           <div className="flex-grow border rounded-md p-3 m-2">
+            <AddTodo />
+          </div>
+          <div className="flex-grow border rounded-md p-3 m-2">
             <TodoList todo={todos!} />
           </div>
           <div className="flex-grow border rounded-md p-3 m-2">
-            <AddTodo />
+            <CompletedList todo={todos!} />
           </div>
         </div>
       </div>

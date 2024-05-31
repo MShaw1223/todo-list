@@ -1,4 +1,5 @@
 "use server";
+import { tableType } from "@/components/DataTable/columns";
 import { createClient } from "@/utils/supabase/server";
 
 export const PostTodo = async (formData: FormData) => {
@@ -10,6 +11,23 @@ export const PostTodo = async (formData: FormData) => {
     header,
     body,
   });
+  if (error) {
+    console.error("error", error);
+  }
+};
+
+export const SetNewCompleteState = async (
+  complete: boolean,
+  data: tableType
+) => {
+  const supabase = createClient();
+  const id = data.id;
+  const { error } = await supabase
+    .from("todos")
+    .update({
+      complete,
+    })
+    .eq("id", id);
   if (error) {
     console.error("error", error);
   }
