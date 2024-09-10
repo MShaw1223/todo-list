@@ -1,7 +1,7 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal } from "lucide-react";
+import { Check, MoreHorizontal, Trash, X } from "lucide-react";
 import { Button } from "../ui/button";
 import {
   DropdownMenu,
@@ -36,7 +36,6 @@ export const columns: ColumnDef<tableType>[] = [
     id: "actions",
     header: "Actions",
     cell: ({ row }) => {
-      const r = row.original;
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -48,21 +47,25 @@ export const columns: ColumnDef<tableType>[] = [
           <DropdownMenuContent align="end">
             <DropdownMenuItem
               onClick={() => {
-                SetNewCompleteState(!r.complete, r);
+                SetNewCompleteState(!row.original.complete, row.original);
                 window.location.reload();
               }}
+              className="justify-between"
             >
-              Mark as
-              {row.original.complete === true ? " not Complete" : " Complete"}
+              Mark
+              {row.original.complete === true ? " Not Complete" : " Complete"}
+              {row.original.complete === true ? <X /> : <Check />}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
               onClick={() => {
-                DeleteTodo(r.id);
+                DeleteTodo(row.original.id);
                 window.location.reload();
               }}
+              className="justify-between"
             >
               Delete Todo
+              <Trash />
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
