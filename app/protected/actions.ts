@@ -1,5 +1,5 @@
 "use server";
-import { tableType } from "@/components/DataTable/columns";
+import { TodoType } from "@/components/DataTable/columns";
 import { createClient } from "@/utils/supabase/server";
 
 export const PostTodo = async (formData: FormData) => {
@@ -18,7 +18,7 @@ export const PostTodo = async (formData: FormData) => {
 
 export const SetNewCompleteState = async (
   complete: boolean,
-  data: tableType
+  data: TodoType
 ) => {
   const supabase = createClient();
   const id = data.id;
