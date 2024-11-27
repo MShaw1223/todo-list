@@ -1,9 +1,9 @@
-import { User } from "@supabase/supabase-js";
+import * as React from "react";
 import { NextApiRequest } from "next";
 import { NextRequest } from "next/server";
 
 async function extractBody(
-  req: NextRequest | NextApiRequest | Request | Response
+  req: NextRequest | NextApiRequest | Request | Response,
 ) {
   try {
     if (!req.body) {
@@ -40,4 +40,22 @@ type payload = {
 
 const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
 
-export { extractBody, type payload, sleep };
+function useMediaQuery(query: string) {
+  const [value, setValue] = React.useState(false);
+
+  React.useEffect(() => {
+    function onChange(event: MediaQueryListEvent) {
+      setValue(event.matches);
+    }
+
+    const result = matchMedia(query);
+    result.addEventListener("change", onChange);
+    setValue(result.matches);
+
+    return () => result.removeEventListener("change", onChange);
+  }, [query]);
+
+  return value;
+}
+
+export { extractBody, type payload, sleep, useMediaQuery };
