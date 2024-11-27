@@ -1,8 +1,8 @@
 "use client";
-import { columns, tableType } from "../DataTable/columns";
+import { columns, TodoType } from "../DataTable/columns";
 import { DataTable } from "./DataTable";
 
-export const TodoList = ({ todo }: { todo: tableType[] }) => {
+export const TodoList = ({ todo }: { todo: TodoType[] }) => {
   const notComplete = todo.filter((todos) => todos.complete === false);
   return (
     <>
