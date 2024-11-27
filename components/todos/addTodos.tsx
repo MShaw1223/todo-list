@@ -3,6 +3,7 @@ import { PostTodo } from "@/app/protected/actions";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { sleep } from "@/utils/helpful";
+import { Plus } from "lucide-react";
 
 export const AddTodo = () => {
   return (
@@ -12,19 +13,21 @@ export const AddTodo = () => {
         <form className="flex-grow space-y-2">
           <Input
             className="bg-accent/30"
-            placeholder="To-do title"
+            placeholder="Title"
             name="head"
+            title="Title"
             required
           />
           <Input
             className="bg-accent/30"
             placeholder="more details"
             name="body"
+            title="Details"
             required
           />
           <Button
             variant="outline"
-            className="text-accent-foreground"
+            className="text-accent-foreground justify-between"
             formAction={PostTodo}
             onClick={async () => {
               await sleep(1500);
@@ -32,6 +35,7 @@ export const AddTodo = () => {
             }}
           >
             Add
+            <Plus />
           </Button>
         </form>
       </div>
