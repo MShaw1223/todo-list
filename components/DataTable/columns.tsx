@@ -12,14 +12,14 @@ import {
 } from "../ui/dropdown-menu";
 import { DeleteTodo, SetNewCompleteState } from "@/app/protected/actions";
 
-export type tableType = {
+export type TodoType = {
   id: number;
   complete: boolean;
   body: string;
   header: string;
 };
 
-export const columns: ColumnDef<tableType>[] = [
+export const columns: ColumnDef<TodoType>[] = [
   {
     accessorKey: "complete",
     header: "Complete",

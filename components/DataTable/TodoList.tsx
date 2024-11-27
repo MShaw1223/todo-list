@@ -2,7 +2,7 @@
 import { columns, tableType } from "../DataTable/columns";
 import { DataTable } from "./DataTable";
 
-export default function TodoList({ todo }: { todo: tableType[] }) {
+export const TodoList = ({ todo }: { todo: tableType[] }) => {
   const notComplete = todo.filter((todos) => todos.complete === false);
   return (
     <>
@@ -10,4 +10,4 @@ export default function TodoList({ todo }: { todo: tableType[] }) {
       <DataTable columns={columns} data={notComplete} />
     </>
   );
-}
+};

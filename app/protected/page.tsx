@@ -1,10 +1,13 @@
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-import { AddTodo } from "@/components/todos/addTodos";
 import { NavBar } from "@/components/navbar";
-import { tableType } from "@/components/DataTable/columns";
-import CompletedList from "@/components/DataTable/CompletedTodos";
-import TodoList from "@/components/DataTable/TodoList";
+import { TodoType } from "@/components/DataTable/columns";
+import { AddTodo } from "@/components/todos/addTodos";
+import { TodoList } from "@/components/DataTable/TodoList";
+import { CompletedList } from "@/components/DataTable/CompletedTodos";
+import { EditTodo } from "@/components/todos/editTodos";
+
+const tileOptions = [AddTodo, TodoList, CompletedList, EditTodo];
 
 export default async function ProtectedPage() {
   const supabase = createClient();
@@ -21,22 +24,26 @@ export default async function ProtectedPage() {
     .select()
     .eq("userid", user.id)
     .order("id", { ascending: true })
-    .returns<tableType[]>();
+    .returns<TodoType[]>();
   return (
     <>
       <NavBar />
       <h1 className="text-3xl text-center my-4">Todo's</h1>
       <div className="animate-in flex mx-auto">
         <div className="flex-1 flex flex-wrap">
-          <div className="flex-grow border rounded-md p-2 m-1">
-            <AddTodo />
-          </div>
-          <div className="flex-grow border rounded-md p-2 m-1">
-            <TodoList todo={todos!} />
-          </div>
-          <div className="flex-grow border rounded-md p-2 m-1">
-            <CompletedList todo={todos!} />
-          </div>
+          {tileOptions.map((option, index) => (
+            <div key={index} className="flex-grow border rounded-md p-2 m-1">
+              {option == TodoList ? (
+                <TodoList todo={todos!} />
+              ) : option == CompletedList ? (
+                <CompletedList todo={todos!} />
+              ) : option == EditTodo ? (
+                <EditTodo todos={todos!} />
+              ) : (
+                <AddTodo />
+              )}
+            </div>
+          ))}
         </div>
       </div>
     </>
