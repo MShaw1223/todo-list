@@ -53,7 +53,7 @@ export const columns: ColumnDef<TodoType>[] = [
               className="justify-between"
             >
               Mark
-              {row.original.complete === true ? " Not Complete" : " Complete"}
+              {row.original.complete === true ? " Incomplete" : " Complete"}
               {row.original.complete === true ? <X /> : <Check />}
             </DropdownMenuItem>
             <DropdownMenuSeparator />
