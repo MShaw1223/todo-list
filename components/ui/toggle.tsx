@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Moon, Sun } from "lucide-react";
+import { LucideBlocks, Moon, Settings, Settings2, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
@@ -10,29 +10,58 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSub,
+  DropdownMenuSeparator,
+  DropdownMenuSubTrigger,
+  DropdownMenuSubContent,
 } from "@/components/ui/dropdown-menu";
 
-export function ModeToggle() {
+export function Toggle() {
   const { setTheme } = useTheme();
-
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <Button variant="outline" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+          <Settings />
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <DropdownMenuItem onClick={() => setTheme("light")}>
-          Light
+        <DropdownMenuItem className="justify-between">
+          <Settings2 className="h-[1.2rem] w-[1.2rem] mr-3" />
+          User settings
         </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")}>
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")}>
-          System
-        </DropdownMenuItem>
+        <DropdownMenuSeparator />
+        <DropdownMenuSub>
+          <DropdownMenuSubTrigger>Theme</DropdownMenuSubTrigger>
+          <DropdownMenuPortal>
+            <DropdownMenuSubContent>
+              <DropdownMenuItem
+                onClick={() => setTheme("dark")}
+                className="justify-between"
+              >
+                <Moon className="h-[1.2rem] w-[1.2rem]" />
+                dark
+              </DropdownMenuItem>
+              <DropdownMenuSeparator aria-orientation="horizontal" />
+              <DropdownMenuItem
+                onClick={() => setTheme("light")}
+                className="justify-between"
+              >
+                <Sun className="h-[1.2rem] w-[1.2rem]" />
+                light
+              </DropdownMenuItem>
+              <DropdownMenuSeparator aria-orientation="horizontal" />
+              <DropdownMenuItem
+                onClick={() => setTheme("system")}
+                className="justify-between"
+              >
+                <LucideBlocks className="h-[1.2rem] w-[1.2rem]" />
+                system
+              </DropdownMenuItem>
+            </DropdownMenuSubContent>
+          </DropdownMenuPortal>
+        </DropdownMenuSub>
       </DropdownMenuContent>
     </DropdownMenu>
   );
