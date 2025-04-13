@@ -1,8 +1,5 @@
 export function RequiredFieldEmpty(x: number): Boolean {
-  if (x) {
-    return true;
-  }
-  return false;
+  return x ? true : false;
 }
 
 export const RequiredModal = () => {
