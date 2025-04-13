@@ -39,7 +39,7 @@ export default async function ProtectedPage() {
             const Component = option.fn;
             return (
               <div key={index} className="flex-grow border rounded-md p-2 m-1">
-                <h1 className="mb-2">{option.name}</h1>
+                <h1 className="mb-2 text-center">{option.name}</h1>
                 <Component todos={todos!} />
               </div>
             );
