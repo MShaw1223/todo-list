@@ -1,8 +1,14 @@
-import WelcomeMessage from "@/components/Welcome";
 import { NavBar } from "@/components/navbar";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
-export default async function Index() {
+import Login from "./login/page";
+export default async function Index({
+  searchParams,
+}: {
+  searchParams: {
+    message: string;
+  };
+}) {
   const supabase = createClient();
 
   const {
@@ -17,7 +23,7 @@ export default async function Index() {
       <div className="flex-1 w-full">
         <NavBar />
         <div className="animate-in flex-1 flex flex-col gap-20 px-3">
-          <WelcomeMessage />
+          <Login searchParams={searchParams} />
         </div>
       </div>
     </>

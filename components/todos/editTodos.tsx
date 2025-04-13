@@ -1,20 +1,17 @@
 "use client";
-import { TodoType } from "../DataTable/columns";
+
 import { ComboBox } from "../ui/pickTodoComboBox";
 import { Input } from "../ui/input";
 import { Textarea } from "../ui/textarea";
 import React from "react";
 import { Button } from "../ui/button";
 import { UpdateTodo } from "@/app/protected/actions";
+import { TodoType } from "@/utils/helpful";
 
 export const EditTodo = ({ todos }: { todos: TodoType[] }) => {
-  // filter todos to incomplete
-  // add this to a search select, search done by header name / body contents ; only display header / disp head & small preview text?
   const [selectedEdit, setSelectedEdit] = React.useState<TodoType | null>(null);
   return (
     <>
-      <h1 className="mb-2">Edit a todo</h1>
-      {/* min-w-[250px] */}
       <div className="text-center flex flex-wrap w-full align-middle justify-center">
         {!selectedEdit && (
           <ComboBox

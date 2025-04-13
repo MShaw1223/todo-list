@@ -1,10 +1,10 @@
 "use server";
-import { TodoType } from "@/components/DataTable/columns";
+import { BaseTodo, TodoType } from "@/utils/helpful";
 import { createClient } from "@/utils/supabase/server";
 
-export const PostTodo = async (formData: FormData) => {
-  const header = formData.get("head") as string;
-  const body = formData.get("body") as string;
+export const PostTodo = async (data: BaseTodo) => {
+  const header = data.header;
+  const body = data.body;
   const supabase = createClient();
 
   const { error } = await supabase.from("todos").insert({
