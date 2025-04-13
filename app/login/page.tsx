@@ -13,6 +13,8 @@ export default function Login({
     "use server";
 
     const email = formData.get("email") as string;
+    const split_email = email.split("@");
+    const display_name = split_email[0];
     const password = formData.get("password") as string;
     const supabase = createClient();
 
@@ -33,6 +35,8 @@ export default function Login({
 
     const origin = headers().get("origin");
     const email = formData.get("email") as string;
+    const split_email = email.split("@");
+    const display_name = split_email[0];
     const password = formData.get("password") as string;
     const supabase = createClient();
 
