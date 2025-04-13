@@ -22,10 +22,18 @@ import {
 import { Edit } from "lucide-react";
 import { TodoType } from "../DataTable/columns";
 
-export function ComboBox({ todos }: { todos: TodoType[] }) {
+export function ComboBox({
+  todos,
+  setSelectedEdit,
+  selectedEdit,
+}: {
+  todos: TodoType[];
+  setSelectedEdit: any;
+  selectedEdit: TodoType | null;
+}) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
-  const [selectedEdit, setSelectedEdit] = React.useState<TodoType | null>(null);
+  // const [selectedEdit, setSelectedEdit] = React.useState<TodoType | null>(null);
 
   if (isDesktop) {
     return (
@@ -56,8 +64,15 @@ export function ComboBox({ todos }: { todos: TodoType[] }) {
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button variant="outline" className="w-[150px] justify-start">
-          {selectedEdit ? <>{selectedEdit.header}</> : <>+ Set status</>}
+        <Button variant="outline" className="w-[150px] justify-between">
+          {selectedEdit ? (
+            <>{selectedEdit.header}</>
+          ) : (
+            <>
+              Pick Todo
+              <Edit />
+            </>
+          )}
         </Button>
       </DrawerTrigger>
       <DrawerContent>
@@ -83,10 +98,10 @@ function EditList({
   todos: TodoType[];
 }) {
   const incompleteTodos: TodoType[] = todos.filter(
-    (todo) => todo.complete !== true,
+    (todo) => todo.complete !== true
   );
   const completeTodos: TodoType[] = todos.filter(
-    (todo) => todo.complete === true,
+    (todo) => todo.complete === true
   );
 
   return (
@@ -103,8 +118,8 @@ function EditList({
               onSelect={(value) => {
                 setSelectedEdit(
                   incompleteTodos.find(
-                    (incompleteTodo) => incompleteTodo.header === value,
-                  ) || null,
+                    (incompleteTodo) => incompleteTodo.header === value
+                  ) || null
                 );
                 setOpen(false);
               }}
@@ -123,8 +138,8 @@ function EditList({
               onSelect={(value) => {
                 setSelectedEdit(
                   completeTodos.find(
-                    (completeTodo) => completeTodo.header === value,
-                  ) || null,
+                    (completeTodo) => completeTodo.header === value
+                  ) || null
                 );
                 setOpen(false);
               }}

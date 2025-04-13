@@ -20,10 +20,10 @@ export type TodoType = {
 };
 
 export const columns: ColumnDef<TodoType>[] = [
-  {
-    accessorKey: "complete",
-    header: "Complete",
-  },
+  // {
+  //   accessorKey: "complete",
+  //   header: "Complete",
+  // },
   {
     accessorKey: "header",
     header: "Header",
@@ -46,8 +46,8 @@ export const columns: ColumnDef<TodoType>[] = [
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem
-              onClick={() => {
-                SetNewCompleteState(!row.original.complete, row.original);
+              onClick={async () => {
+                await SetNewCompleteState(!row.original.complete, row.original);
                 window.location.reload();
               }}
               className="justify-between"
@@ -58,8 +58,8 @@ export const columns: ColumnDef<TodoType>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem
-              onClick={() => {
-                DeleteTodo(row.original.id);
+              onClick={async () => {
+                await DeleteTodo(row.original.id);
                 window.location.reload();
               }}
               className="justify-between"

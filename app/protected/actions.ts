@@ -40,3 +40,15 @@ export const DeleteTodo = async (id: number) => {
     console.error("error", error);
   }
 };
+
+export const UpdateTodo = async (id: number, header: string, body: string) => {
+  const supabase = createClient();
+
+  const { error } = await supabase
+    .from("todos")
+    .update({ header, body })
+    .eq("id", id);
+  if (error) {
+    console.error("error", error);
+  }
+};
