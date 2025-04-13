@@ -1,12 +1,12 @@
 "use client";
-import { columns, TodoType } from "../DataTable/columns";
+import { TodoType } from "@/utils/helpful";
+import { columns } from "../DataTable/columns";
 import { DataTable } from "./DataTable";
 
-export const TodoList = ({ todo }: { todo: TodoType[] }) => {
-  const notComplete = todo.filter((todos) => todos.complete === false);
+export const TodoList = ({ todos }: { todos: TodoType[] }) => {
+  const notComplete = todos.filter((todo) => todo.complete === false);
   return (
     <>
-      <h1 className="mb-2">Todos</h1>
       <DataTable columns={columns} data={notComplete} />
     </>
   );

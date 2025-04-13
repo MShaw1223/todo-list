@@ -11,13 +11,7 @@ import {
   DropdownMenuSeparator,
 } from "../ui/dropdown-menu";
 import { DeleteTodo, SetNewCompleteState } from "@/app/protected/actions";
-
-export type TodoType = {
-  id: number;
-  complete: boolean;
-  body: string;
-  header: string;
-};
+import { TodoType } from "@/utils/helpful";
 
 export const columns: ColumnDef<TodoType>[] = [
   // {

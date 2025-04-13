@@ -20,7 +20,7 @@ import {
   PopoverTrigger,
 } from "@/components/ui/popover";
 import { Edit } from "lucide-react";
-import { TodoType } from "../DataTable/columns";
+import { TodoType } from "@/utils/helpful";
 
 export function ComboBox({
   todos,
